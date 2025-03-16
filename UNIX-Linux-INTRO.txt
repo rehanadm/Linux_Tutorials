@@ -1,8 +1,3 @@
-so lets start!!!
-Today we will understand what is unix and linux
-also popular unix and linux distributions, key features of linux,
-benifits of linux & some common linux uses.
-
 UNIX:
 	-Unix is an operating system that allows users to interact directly with the computer
 	-It is a powerful, flexible, and widely used operating system that laid the foundation for many modern operating system including Linux, macOS.
