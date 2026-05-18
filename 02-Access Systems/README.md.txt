@@ -1,3 +1,161 @@
+# Access Systems - Linux Administration
+
+This section covers RHCSA-related system access topics including local console access, remote SSH access, and SSH key-based authentication for secure Linux administration.
+
+---
+
+# Topics Covered
+
+* Local Console Access
+* Remote Console Access
+* SSH Remote Login
+* SSH Key-Based Authentication
+* SSH Security Best Practices
+* SSH Troubleshooting
+
+---
+
+# Local Console Access
+
+Local console access allows administrators to directly log in to a Linux system using a physical keyboard and monitor attached to the server.
+
+## Common Usage
+
+* Initial server setup
+* Recovery mode access
+* Password reset operations
+* Troubleshooting boot failures
+* Single-user mode administration
+
+## Switch Between Virtual Consoles
+
+Linux provides multiple TTY consoles.
+
+### Access Console Terminals
+
+```bash
+Ctrl + Alt + F1
+Ctrl + Alt + F2
+Ctrl + Alt + F3
+```
+
+Return to graphical interface:
+
+```bash
+Ctrl + Alt + F1
+```
+
+OR
+
+```bash
+Ctrl + Alt + F7
+```
+
+(Depends on Linux distribution)
+
+---
+
+# Remote Console Access
+
+Remote access allows administrators to manage Linux systems remotely across networks.
+
+## Common Remote Access Protocols
+
+| Protocol | Purpose                 |
+| -------- | ----------------------- |
+| SSH      | Secure remote login     |
+| SCP      | Secure file copy        |
+| SFTP     | Secure file transfer    |
+| VNC      | Remote graphical access |
+
+---
+
+# SSH Remote Login
+
+SSH (Secure Shell) is the standard secure protocol for remote Linux administration.
+
+## Basic SSH Syntax
+
+```bash
+ssh username@server-ip
+```
+
+Example:
+
+```bash
+ssh admin@192.168.1.10
+```
+
+---
+
+# SSH Login Using Custom Port
+
+```bash
+ssh -p 2222 admin@192.168.1.10
+```
+
+---
+
+# Copy Files Using SCP
+
+## Copy File to Remote Server
+
+```bash
+scp backup.tar.gz admin@192.168.1.10:/backup
+```
+
+## Copy File from Remote Server
+
+```bash
+scp admin@192.168.1.10:/backup/file.txt .
+```
+
+---
+
+# SSH Service Management
+
+## RHEL / CentOS / OEL
+
+```bash
+systemctl status sshd
+systemctl restart sshd
+systemctl enable sshd
+```
+
+## Ubuntu / Debian
+
+```bash
+systemctl status ssh
+systemctl restart ssh
+```
+
+---
+
+# SSH Configuration File
+
+Main SSH daemon configuration file:
+
+```bash
+/etc/ssh/sshd_config
+```
+
+Common configurations:
+
+```ini
+Port 22
+PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication yes
+```
+
+After changes restart SSH service:
+
+```bash
+systemctl restart sshd
+```
+
+---
+
 # SSH Key-Based Authentication Setup Guide
 
 ## Overview
@@ -148,20 +306,6 @@ sudo systemctl restart ssh
 
 ---
 
-# SSH Authentication Flow
-
-```text
-Client Machine
-     |
-     |--- Private Key Authentication --->
-     |
-Remote Linux Server
-     |
-Authorized using Public Key
-```
-
----
-
 # Verify SSH Connectivity
 
 Run:
@@ -218,30 +362,34 @@ systemctl status sshd
 
 ---
 
-# Useful Commands
+# Useful SSH Commands
 
 | Command     | Description          |
 | ----------- | -------------------- |
+| ssh         | Remote login         |
 | ssh-keygen  | Generate SSH keys    |
 | ssh-copy-id | Copy public key      |
+| scp         | Secure file copy     |
+| sftp        | Secure file transfer |
 | ssh-add     | Add key to SSH agent |
-| ssh-agent   | Manage SSH keys      |
 | ssh -v      | Debug SSH connection |
 
 ---
 
-# Example Automation Use Cases
+# Automation Use Cases
 
 * Ansible passwordless authentication
-* Automated backups
-* CI/CD deployments
-* Server orchestration
-* Secure remote administration
+* Automated deployments
+* Remote server administration
+* Backup automation
+* CI/CD pipelines
+* Infrastructure orchestration
 
 ---
 
 # Author
+
 Abdul Rehan
 
 GitHub Repository:
-https://github.com/rehanadm/rehanadm.github.io
+https://github.com/rehanadm/Linux_Tutorials
